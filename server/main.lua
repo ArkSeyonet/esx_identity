@@ -31,7 +31,7 @@ AddEventHandler('esx:playerLoaded', function(playerId, xPlayer)
 		}, function(result)
 			if result[1] then
 				if result[1].firstname then
-					playerIdentity[identifier] = {
+					playerIdentity[xPlayer.identifier] = {
 						firstName = result[1].firstname,
 						lastName = result[1].lastname,
 						dateOfBirth = result[1].dateofbirth,
