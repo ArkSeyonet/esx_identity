@@ -41,6 +41,8 @@ end
 
 RegisterNetEvent('esx_identity:showRegisterIdentity')
 AddEventHandler('esx_identity:showRegisterIdentity', function()
+	EnableGui(false)
+	
 	TriggerEvent('esx_skin:resetFirstSpawn')
 
 	if not isDead then
@@ -49,13 +51,15 @@ AddEventHandler('esx_identity:showRegisterIdentity', function()
 end)
 
 RegisterNUICallback('register', function(data, cb)
+	EnableGui(false)
+
 	ESX.TriggerServerCallback('esx_identity:registerIdentity', function(callback)
 		if callback then
 			ESX.ShowNotification(_U('thank_you_for_registering'))
-			EnableGui(false)
 			TriggerEvent('esx_skin:playerRegistered')
 		else
 			ESX.ShowNotification(_U('registration_error'))
+			TriggerEvent('esx_identity:showRegisterIdentity')
 		end
 	end, data)
 end)
